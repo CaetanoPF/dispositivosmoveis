@@ -2,83 +2,41 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--VUE CDN-->
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="assets/style.css" />
+
     <title>Curso VUE3</title>
 </head>
 
 <body>
     <div id="app">
-        <h1>
-            {{ message }}
-        </h1>
-        <input type="text" v-model="message" placeholder="Digite aqui">
+        <div class="product-display">
+            <div class="product-container">
+                <div class="product-image">
+                    <img :src="image" alt="img-product" />
+                </div>
+                <div class="product-info">
+                    <h1>T-Shirt</h1>
+                    <p>In Stock</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        const { createApp, ref } = Vue
-
+        const { createApp, ref } = Vue;
         createApp({
             setup() {
-                const message = ref('Hello vue!')
+                const message = ref("Hello Vue!");
                 return {
-                    message
-                }
-            }
-        }).mount('#app')
+                    message,
+                    image: ref("assets/images/t-shirt-blue.png"),
+                };
+            },
+        }).mount("#app");
     </script>
 </body>
 
 </html>
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 85vh;
-        margin: 0;
-        background: #f4f4f4;
-        color: #333;
-    }
-
-    #app {
-        text-align: center;
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        width: 90%;
-        max-width: 400px;
-    }
-
-    h1 {
-        color: #333;
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
-
-    input {
-        width: calc(100% - 24px);
-        padding: 12px;
-        margin-top: 10px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 16px;
-        outline: none;
-        box-shadow: none;
-        transition: 0.3s;
-        background: white;
-        color: #333;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    input:focus {
-        border-color: #666;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-</style>
