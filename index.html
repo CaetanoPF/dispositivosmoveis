@@ -2,41 +2,79 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CURSO VUE3</title>
+    <!--Vue CDN-->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="assets/style.css" />
-
-    <title>Curso VUE3</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
     <div id="app">
-        <div class="product-display">
-            <div class="product-container">
-                <div class="product-image">
-                    <img :src="image" alt="img-product" />
+        <div class='product-display'>
+            <div class='product-container'>
+
+                <div class='product-image'>
+                    <!--IMAGEM DO PRODUTO-->
+                    <img :src="image" alt="img-product">
                 </div>
-                <div class="product-info">
-                    <h1>T-Shirt</h1>
-                    <p>In Stock</p>
+
+                <div class='product-info'>
+                    <!--INFO DO PRODUTO-->
+                    <h1>{{ product_title }}</h1>
+                    <p v-if="inStock > 10">In Stock</p>
+                    <p v-else-if="inStock < 10 && inStock > 1">Almost Out</p>
+
+                    <p v-else>Out of Stock</p>
+                    <ul>
+                        <li v-for="detail in details">
+                            {{ detail}}
+                        </li>
+                    </ul>
+                    <div v-for="variant in variants">
+                        {{variant.color}}
+                    </div>
+                </div>
+
+                <div class='product-image'>
+                    <!--IMAGEM DO PRODUTO-->
+                    <img :src="image_green" alt="img-product">
+                </div>
+
+                <div class='product-info'>
+                    <!--INFO DO PRODUTO-->
+                    <h1>{{green_title}}</h1>
+                    <p v-if="inStock > 10">In Stock</p>
+                    <p v-else-if="inStock < 10 && inStock > 1">Almost Out</p>
+                    <p v-else>Out of Stock</p>
+                    <ul>
+                        <li v-for="detail in details">
+                            {{ detail}}
+                        </li>
+                    </ul>
+                    <div v-for="variant in variants">
+                        {{variant.color}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
-        const { createApp, ref } = Vue;
+        const { createApp, ref } = Vue
         createApp({
             setup() {
-                const message = ref("Hello Vue!");
                 return {
-                    message,
+                    product_title: ref('T-Shirt Blue'),
                     image: ref("assets/images/t-shirt-blue.png"),
-                };
-            },
-        }).mount("#app");
+                    inStock: ref(9),
+                    image_green: ref("assets/images/t-shirt-green.png"),
+                    green_title: ref('T-Shirt Green'),
+                    details: ['50% Cotton', '30% Polyester', '20% Woll'],
+                    variants: [{ id: 1, color: 'blue' }, { id: 2, color: 'green' }]
+                }
+            }
+        }).mount('#app')
     </script>
 </body>
-
 </html>
