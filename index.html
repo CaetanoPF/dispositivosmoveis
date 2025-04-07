@@ -22,7 +22,7 @@
 
                 <div class='product-info'>
                     <!--INFO DO PRODUTO-->
-                    <h1>{{ product_title }}</h1>
+                    <h1>{{ product_title + " " + brand }}</h1>
                     <p v-if="inStock > 10">In Stock</p>
                     <p v-else-if="inStock < 10 && inStock > 1">Almost Out</p>
 
@@ -32,10 +32,10 @@
                             {{ detail}}
                         </li>
                     </ul>
-                    <div v-for="variant in variants" :key="variant_id" @mouseover="changeImage(variant.image)">
-                        {{variant.color}}
+                    <div v-for="variant in variants" :key="variant_id" @mouseover="changeImage(variant.image)"
+                        class="color-circle" :style="{ backgroundColor: variant.color }">
                     </div>
-                    <button class="button" v-on:click="addToCart">Add to Cart</button>
+                    <button class="button" :class="{ disabledButton : inStock < 1}" @click="addToCart" :disabled="inStock < 1">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -55,6 +55,7 @@
                 }
                 return {
                     product_title: ref('T-Shirt'),
+                    brand: 'Marconyu',
                     image,
                     inStock: ref(9),
                     image_green: ref("assets/images/t-shirt-green.png"),

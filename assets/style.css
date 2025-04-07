@@ -40,7 +40,6 @@ body {
   border-radius: 50%;
 }
 
-
 .disabledButton {
   background-color: #d8d8d8;
   cursor: not-allowed;
@@ -48,6 +47,8 @@ body {
 
 h1 {
   font-size: 50px;
+  width: 40%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 h3 {
